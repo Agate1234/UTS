@@ -198,6 +198,7 @@ DROP TABLE IF EXISTS m_user;
 CREATE TABLE `m_user` (
   `user_id` bigint(20) UNSIGNED NOT NULL,
   `level_id` bigint(20) UNSIGNED NOT NULL,
+  `image` LONGBLOB NULL DEFAULT NULL,
   `username` varchar(20) NOT NULL,
   `nama` varchar(100) NOT NULL,
   `password` varchar(255) NOT NULL,
@@ -209,28 +210,28 @@ CREATE TABLE `m_user` (
 -- Dumping data for table `m_user`
 --
 
-INSERT INTO `m_user` (`user_id`, `level_id`, `username`, `nama`, `password`, `created_at`, `updated_at`) VALUES
-(1, 1, 'admin', 'Administrator', '$2y$12$z3b3567nVdnR2cJyRKhAcu3iJSXsLucCzDo3xBjLmuqUr8gSsTI.G', NULL, '2024-10-08 20:47:36'),
-(2, 2, 'manager', 'Manager', '$2y$12$FhQmFBRvJheyfTGkzHQB4uoi.ai4gnarXVbJcWUXKD9tAOku84mpi', NULL, NULL),
-(3, 3, 'staff', 'Staff/Kasir', '$2y$12$UFwcSe3c56w6gbGij4Qa/uJQ6tfL4.jtGdfAoEzIItBnnWbMAgZVS', NULL, '2024-10-08 20:48:04'),
-(11, 2, 'manager_dua', 'Manager 2', '$2y$12$DKitKKoAmYT2r7kS0crn3uFZOry46alr6xSVyHGM7K5wKUbwWFn56', '2024-09-17 17:43:38', '2024-09-17 17:43:38'),
-(12, 2, 'manager22', 'Manager Dua Dua', '$2y$12$K6OeIwOVOxyFjMLkndUKdewb5NQG.3.eUHjHjm4X84Dw3hEhz/fWO', '2024-09-19 22:41:48', '2024-09-19 22:41:48'),
-(13, 2, 'manager33', 'Manager Tiga TIga', '$2y$12$PxbqS.N8G08pYm3mloscUOdorj4TcJxomg0HY/fqO2edJxNqOyyVa', '2024-09-19 23:01:23', '2024-09-19 23:01:23'),
-(14, 2, 'manager45', 'Manager44', '$2y$12$22RViaAFiBIhCI/ZuM694.w4pgLv9JkG5x8kFAitlp4rtBRIe5eqi', '2024-09-20 08:48:56', '2024-09-20 08:48:56'),
-(15, 2, 'manager12', 'Manager11', '$2y$12$gpiRvv.Sc/bsk4rjVD20Geob4fuhq5sY9XNo9Zb8bISqb3PLB/.g.', '2024-09-20 08:51:06', '2024-09-20 08:51:06'),
-(24, 2, 'm123', 'Fa\'iz', '$2y$12$cB1VdeNIzPBokTc.UPJp8OOI9rxEY6f2ByIobu2Rw.RIyOsp7RK4e', '2024-10-01 20:56:51', '2024-10-08 20:47:50'),
-(26, 1, 'MasAdmin', 'paes', '$2y$12$nNDqR1Xt5vn5aqDAQr32WukWQzlHrCxBqDYuPTRuOXcvcRpttfc1S', '2024-10-08 19:09:40', '2024-10-08 19:09:40'),
-(27, 4, 'MbahMase', 'Mbah Ian', '$2y$12$3IaNnqfwLNdaN0x9wPPVkOLzx0/rG7c.24m94pxbLgGu5RgUISani', '2024-10-08 20:48:59', '2024-10-08 20:48:59'),
-(28, 2, 'PakManager', 'Pak Paes', '$2y$12$P4K4sEolTrSzm7rsdUa1Ge55wlBiDZsL0wpAghaGiwwITH1WWrD5G', '2024-10-08 21:05:04', '2024-10-08 21:05:04'),
-(29, 3, 'PendudukBumi', 'Manusia Purba', '$2y$12$homjVnaT/5YAEGdnQTMApezHX6GpCuXcCX3byl3JYgyhQNKibU29y', '2024-10-08 21:06:02', '2024-10-08 21:10:10'),
-(30, 1, 'MbaAdmin', 'Shan', '$2y$12$vaobZUWaJLtJcLY0cetzu.DBWTSF.P47XJkWQxalGfdkUkyfMCpZ2', '2024-10-15 08:47:10', '2024-10-15 08:47:10'),
-(31, 1, 'MbaAdmin123', 'Shannon', '$2y$12$TsXyHs81yrRTw3YmRmtYoeRQQMNWYC4n4jsnSAjFWZgzo/bJqUreu', '2024-10-15 08:48:58', '2024-10-15 08:48:58'),
-(32, 2, 'MasMana', 'Mana', '$2y$12$1F2I1cLDyHB9xehq.7KvFelnMCerY6iegOrSaOsW6OYyNT.LkXATu', '2024-10-15 08:51:36', '2024-10-15 08:51:36'),
-(33, 2, 'MasMana123', 'MasMana', '$2y$12$ZwTqM8XVaoCUOb0bKhYl2.vm82yhV85wLCtTb9QdMVjjRG7pExvge', '2024-10-15 08:52:24', '2024-10-15 08:52:24'),
-(34, 3, 'Mastah', 'Ian', '$2y$12$zaenClvgHS6CrHNCL71FMOZZ2MOv/MVA3XAb6DRUTmkDtbnL/bOWu', '2024-10-15 08:54:13', '2024-10-15 08:54:13'),
-(35, 3, 'Mastah123', 'Ian123', '$2y$12$UiwIRff.zmS3TNPZLhOQdea/aVwa2K9q/TSob90ZYQtobuMnW2aPK', '2024-10-15 09:00:07', '2024-10-15 09:00:07'),
-(36, 4, 'MasCus', 'Wildan', '$2y$12$i1JQaqDFBiggkFSjS7fTtOlgzabfGmrzpbne4s2va9vs9424dOvsy', '2024-10-15 18:06:55', '2024-10-15 18:06:55'),
-(37, 4, 'MasCUh', 'Ryan', '$2y$12$T5c3N6Whwkh0dWILO4SbNO/LSm63AIq0CKViS5Df9mJBnvpT9pDt.', '2024-10-15 18:10:34', '2024-10-15 18:10:34');
+INSERT INTO `m_user` (`user_id`, `level_id`, `image`, `username`, `nama`, `password`, `created_at`, `updated_at`) VALUES
+(1, 1, NULL, 'admin', 'Administrator', '$2y$12$z3b3567nVdnR2cJyRKhAcu3iJSXsLucCzDo3xBjLmuqUr8gSsTI.G', NULL, '2024-10-08 20:47:36'),
+(2, 2, NULL, 'manager', 'Manager', '$2y$12$FhQmFBRvJheyfTGkzHQB4uoi.ai4gnarXVbJcWUXKD9tAOku84mpi', NULL, NULL),
+(3, 3, NULL, 'staff', 'Staff/Kasir', '$2y$12$UFwcSe3c56w6gbGij4Qa/uJQ6tfL4.jtGdfAoEzIItBnnWbMAgZVS', NULL, '2024-10-08 20:48:04'),
+(11, 2, NULL, 'manager_dua', 'Manager 2', '$2y$12$DKitKKoAmYT2r7kS0crn3uFZOry46alr6xSVyHGM7K5wKUbwWFn56', '2024-09-17 17:43:38', '2024-09-17 17:43:38'),
+(12, 2, NULL, 'manager22', 'Manager Dua Dua', '$2y$12$K6OeIwOVOxyFjMLkndUKdewb5NQG.3.eUHjHjm4X84Dw3hEhz/fWO', '2024-09-19 22:41:48', '2024-09-19 22:41:48'),
+(13, 2, NULL, 'manager33', 'Manager Tiga TIga', '$2y$12$PxbqS.N8G08pYm3mloscUOdorj4TcJxomg0HY/fqO2edJxNqOyyVa', '2024-09-19 23:01:23', '2024-09-19 23:01:23'),
+(14, 2, NULL, 'manager45', 'Manager44', '$2y$12$22RViaAFiBIhCI/ZuM694.w4pgLv9JkG5x8kFAitlp4rtBRIe5eqi', '2024-09-20 08:48:56', '2024-09-20 08:48:56'),
+(15, 2, NULL, 'manager12', 'Manager11', '$2y$12$gpiRvv.Sc/bsk4rjVD20Geob4fuhq5sY9XNo9Zb8bISqb3PLB/.g.', '2024-09-20 08:51:06', '2024-09-20 08:51:06'),
+(24, 2, NULL, 'm123', 'Fa\'iz', '$2y$12$cB1VdeNIzPBokTc.UPJp8OOI9rxEY6f2ByIobu2Rw.RIyOsp7RK4e', '2024-10-01 20:56:51', '2024-10-08 20:47:50'),
+(26, 1, NULL, 'MasAdmin', 'paes', '$2y$12$nNDqR1Xt5vn5aqDAQr32WukWQzlHrCxBqDYuPTRuOXcvcRpttfc1S', '2024-10-08 19:09:40', '2024-10-08 19:09:40'),
+(27, 4, NULL, 'MbahMase', 'Mbah Ian', '$2y$12$3IaNnqfwLNdaN0x9wPPVkOLzx0/rG7c.24m94pxbLgGu5RgUISani', '2024-10-08 20:48:59', '2024-10-08 20:48:59'),
+(28, 2, NULL, 'PakManager', 'Pak Paes', '$2y$12$P4K4sEolTrSzm7rsdUa1Ge55wlBiDZsL0wpAghaGiwwITH1WWrD5G', '2024-10-08 21:05:04', '2024-10-08 21:05:04'),
+(29, 3, NULL, 'PendudukBumi', 'Manusia Purba', '$2y$12$homjVnaT/5YAEGdnQTMApezHX6GpCuXcCX3byl3JYgyhQNKibU29y', '2024-10-08 21:06:02', '2024-10-08 21:10:10'),
+(30, 1, NULL, 'MbaAdmin', 'Shan', '$2y$12$vaobZUWaJLtJcLY0cetzu.DBWTSF.P47XJkWQxalGfdkUkyfMCpZ2', '2024-10-15 08:47:10', '2024-10-15 08:47:10'),
+(31, 1, NULL, 'MbaAdmin123', 'Shannon', '$2y$12$TsXyHs81yrRTw3YmRmtYoeRQQMNWYC4n4jsnSAjFWZgzo/bJqUreu', '2024-10-15 08:48:58', '2024-10-15 08:48:58'),
+(32, 2, NULL, 'MasMana', 'Mana', '$2y$12$1F2I1cLDyHB9xehq.7KvFelnMCerY6iegOrSaOsW6OYyNT.LkXATu', '2024-10-15 08:51:36', '2024-10-15 08:51:36'),
+(33, 2, NULL, 'MasMana123', 'MasMana', '$2y$12$ZwTqM8XVaoCUOb0bKhYl2.vm82yhV85wLCtTb9QdMVjjRG7pExvge', '2024-10-15 08:52:24', '2024-10-15 08:52:24'),
+(34, 3, NULL, 'Mastah', 'Ian', '$2y$12$zaenClvgHS6CrHNCL71FMOZZ2MOv/MVA3XAb6DRUTmkDtbnL/bOWu', '2024-10-15 08:54:13', '2024-10-15 08:54:13'),
+(35, 3, NULL, 'Mastah123', 'Ian123', '$2y$12$UiwIRff.zmS3TNPZLhOQdea/aVwa2K9q/TSob90ZYQtobuMnW2aPK', '2024-10-15 09:00:07', '2024-10-15 09:00:07'),
+(36, 4, NULL, 'MasCus', 'Wildan', '$2y$12$i1JQaqDFBiggkFSjS7fTtOlgzabfGmrzpbne4s2va9vs9424dOvsy', '2024-10-15 18:06:55', '2024-10-15 18:06:55'),
+(37, 4, NULL, 'MasCUh', 'Ryan', '$2y$12$T5c3N6Whwkh0dWILO4SbNO/LSm63AIq0CKViS5Df9mJBnvpT9pDt.', '2024-10-15 18:10:34', '2024-10-15 18:10:34');
 
 -- --------------------------------------------------------
 

@@ -235,4 +235,18 @@ class KategoriController extends Controller
         }
         return redirect('/');
     }
+
+    public function show_ajax(string $id)
+    {
+        $kategori = KategoriModel::find($id);
+
+        if ($kategori) {
+            return view('kategori.show_ajax', ['kategori' => $kategori]);
+        } else {
+            return response()->json([
+                'status' => false,
+                'message' => 'Data tidak ditemukan'
+            ]);
+        }
+    }
 }

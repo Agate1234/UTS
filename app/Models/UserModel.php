@@ -13,7 +13,7 @@ class UserModel extends Authenticatable
 
     protected $table = 'm_user'; 
     protected $primaryKey = 'user_id';
-    protected $fillable = ['username', 'password', 'nama', 'level_id', 'created_id', 'updated_at'];
+    protected $fillable = ['image', 'username', 'password', 'nama', 'level_id', 'created_id', 'updated_at'];
 
     protected $hidden = ['password']; // jangan di tampilkan saat select
 
