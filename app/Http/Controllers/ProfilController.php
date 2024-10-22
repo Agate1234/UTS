@@ -79,37 +79,24 @@ class ProfilController extends Controller
 
     public function update_ajax(Request $request)
     {
-        if ($request->ajax() || $request->wantsJson()) {
-            $rules = [
-                'nama' => 'required|min:3|max:100'
-            ];
+        $rules = [
+            'nama' => 'required|string|min:3|max:100',
+        ];
 
-            $validator = Validator::make($request->all(), $rules);
+        $validator = Validator::make($request->all(), $rules);
 
-            if ($validator->fails()) {
-                return response()->json([
-                    'status' => false, 
-                    'message' => 'Validasi gagal.',
-                    'msgField' => $validator->errors() 
-                ]);
-            }
-
-            $user = auth()->user();
-
-            if ($user) {
-                $user->update($request->all());
-                return response()->json([
-                    'status' => true,
-                    'message' => 'Data berhasil diupdate'
-                ]);
-            } else {
-                return response()->json([
-                    'status' => false,
-                    'message' => 'Data tidak ditemukan'
-                ]);
-            }
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Terjadi kesalahan dalam validasi data.',
+                'msgField' => $validator->errors()
+            ]);
         }
-        return redirect('/');
+
+        $user = auth()->user();
+
+        $user->nama = $request->nama;
+        $user->save();
     }
 
     public function ubah_pass(Request $request)

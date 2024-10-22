@@ -32,7 +32,7 @@ Route::middleware(['auth'])->group(function(){
         Route::post('/upload', [ProfilController::class, 'upload'])->name('upload.foto');
         Route::get('/image', [ProfilController::class, 'showProfileImage'])->name('profil.image');
         Route::get('/ubah_data', [ProfilController::class, 'ubah'])->name('profil.ubah');     
-        Route::put('/update_ajax', [ProfilController::class, 'update_ajax'])->name('profil.update_ajax'); 
+        Route::put('/', [ProfilController::class, 'update_ajax'])->name('profil.update_ajax'); 
         Route::put('/ubah_pass', [ProfilController::class, 'ubah_pass'])->name('profil.ubah_pass'); 
     });    
 

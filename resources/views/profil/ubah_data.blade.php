@@ -17,7 +17,7 @@
         </div>
     </div>
 @else
-    <form action="{{ route('profil.update_ajax') }}" method="POST" id="form-edit">
+    <form id="form-edit" action="{{ route('profil.update_ajax') }}" method="POST">
         @csrf
         @method('PUT')
         <div id="modal-master" class="modal-dialog modal-lg" role="document">
@@ -54,9 +54,12 @@
                 },
                 submitHandler: function(form) {
                     $.ajax({
-                        url: form.action,
-                        type: form.method,
-                        data: $(form).serialize(),
+                        url: form.action,  // URL yang benar
+                        type: form.method, // Metode PUT
+                        data: $(form).serialize(),  // Data form
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest'  // Penting: Ini memastikan permintaan dikenali sebagai AJAX
+                        },
                         success: function(response) {
                             if (response.status) {
                                 $('#myModal').modal('hide');
