@@ -28,6 +28,7 @@ Route::middleware(['auth'])->group(function(){
 
     Route::group(['prefix' => 'profil'], function() {
         Route::get('/', [ProfilController::class, 'index']);
+        Route::get('/ubah_foto', [ProfilController::class, 'ubah_foto']);
         Route::post('/upload', [ProfilController::class, 'upload'])->name('upload.foto');
         Route::get('/image', [ProfilController::class, 'showProfileImage'])->name('profil.image');
         Route::get('/ubah_data', [ProfilController::class, 'ubah'])->name('profil.ubah');     

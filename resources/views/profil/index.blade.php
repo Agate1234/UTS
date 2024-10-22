@@ -45,13 +45,7 @@
 
             <div class="float-left">
               <button class="btn btn-sm btn-primary mt-1" onclick="modalAction('{{ url('profil/ubah_data') }}')" >Ubah Profil</button>
-            </div>
-            <div class="card-tools float-right">
-                <form action="{{ route('upload.foto') }}" method="POST" enctype="multipart/form-data">
-                  @csrf
-                  <button type="submit" class="btn btn-success btn-sm mt-2 ubah-foto-btn">Ubah Foto</button>
-                  <input type="file" id="upload_foto" name="foto" accept="image/*" class="form-control">
-                </form>
+              <button class="btn btn-sm btn-warning mt-1" onclick="modalAction('{{ url('profil/ubah_foto') }}')" >Ubah Foto</button>
             </div>
         </div>
       </div>

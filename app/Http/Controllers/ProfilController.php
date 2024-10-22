@@ -38,6 +38,10 @@ class ProfilController extends Controller
         ]);
     }    
 
+    public function ubah_foto () {
+        return view('profil.ubah_foto');
+    }
+
     public function upload(Request $request)
     {
         $request->validate([
@@ -77,7 +81,7 @@ class ProfilController extends Controller
     {
         if ($request->ajax() || $request->wantsJson()) {
             $rules = [
-                'nama' => 'required|max:100'
+                'nama' => 'required|min:3|max:100'
             ];
 
             $validator = Validator::make($request->all(), $rules);

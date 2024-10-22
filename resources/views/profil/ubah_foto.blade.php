@@ -1,55 +1,32 @@
-@empty($user)
+<form action="{{ route('upload.foto') }}" method="POST" id="form-import" enctype="multipart/form-data">
+    @csrf
     <div id="modal-master" class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Kesalahan</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <h5 class="modal-title" id="exampleModalLabel">Ubah Foto</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
-                <div class="alert alert-danger">
-                    <h5><i class="icon fas fa-ban"></i> Kesalahan!!!</h5>
-                    Data yang anda cari tidak ditemukan.
+                <div class="form-group">
+                    <label>Pilih File</label>
+                    <input type="file" id="upload_foto" name="foto" accept="image/*" class="form-control" required>
+                    <small id="error-upload_foto" class="error-text form-text text-danger"></small>
                 </div>
-                <a href="{{ url('/profil') }}" class="btn btn-warning">Kembali</a>
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-warning">Batal</button>
+                <button type="submit" class="btn btn-success">Ubah Foto</button>
             </div>
         </div>
     </div>
-@else
-    <form action="{{ route('profil.update_ajax') }}" method="POST" id="form-edit">
-        @csrf
-        @method('PUT')
-        <div id="modal-master" class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ubah Data Diri</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label>Nama</label>
-                        <input value="{{ $user->nama }}" type="text" name="nama" id="nama" class="form-control" required>
-                        <small id="error-nama" class="error-text form-text text-danger"></small>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" data-dismiss="modal" class="btn btn-warning">Batal</button>
-                    <button type="submit" class="btn btn-primary">Simpan</button>
-                </div>
-            </div>
-        </div>
-    </form>
-    <script>
-        $(document).ready(function() {
+</form>
+<script>
+     $(document).ready(function() {
             $("#form-edit").validate({
                 rules: {
-                    nama: {
+                    foto: {
                         required: true,
-                        minlength: 3,
-                        maxlength: 100
+                        extension: Image
                     }
                 },
                 submitHandler: function(form) {
@@ -94,5 +71,4 @@
                 }
             });
         });
-    </script>
-@endempty
+</script>
