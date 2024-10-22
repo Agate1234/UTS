@@ -4,15 +4,9 @@
         <div class="card-header">
             <h3 class="card-title">{{ $page->title }}</h3>
             <div class="card-tools">
-                <a href="{{ url('/transaksi/export_excel') }}" class="btn btn-sm btn-primary mt-1">
-                    <i class="fa fa-file-excel"></i> Export Penjualan
-                </a>
-                <a href="{{ url('/transaksi/export_pdf') }}" class="btn btn-sm btn-warning mt-1">
-                    <i class="fa fa-file-pdf"></i>Export Penjualan
-                </a>
-                <button onclick="modalAction('{{ url('transaksi/create_ajax') }}')" class="btn btn-sm btn-success mt-1">
-                    Tambah Penjualan
-                </button>
+                <a href="{{ url('/transaksi/export_excel') }}" class="btn btn-sm btn-primary mt-1"><i class="fa fa-file-excel"></i> Export Penjualan</a>
+                <button onclick="modalAction('{{ url('transaksi/create_ajax') }}')" class="btn btn-sm btn-success mt-1">Tambah Penjualan</button>
+                <a href="{{ url('/transaksi/export_pdf') }}" class="btn btn-sm btn-warning mt-1"><i class="fa fa-file-pdf"></i>Export Penjualan</a>
             </div>
         </div>
 

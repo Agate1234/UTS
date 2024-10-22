@@ -401,7 +401,7 @@ class BarangController extends Controller
     }
 
     public function export_pdf() {
-        $barang = BarangModel::select('kategori_id', 'barang_nama', 'harga_beli', 'harga_jual')
+        $barang = BarangModel::select('kategori_id', 'barang_kode', 'barang_nama', 'harga_beli', 'harga_jual')
                 ->orderBy('kategori_id')
                 ->orderBy('barang_kode')
                 ->with('kategori')

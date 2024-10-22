@@ -4,8 +4,7 @@
     <div class="col-lg-5 col-xs-12 about-company">
 
       <div class="logo-container">
-        <p><img src="{{ asset('img/logo.png') }}" alt="logo" style="height: 50px; width: auto;" class="logo">
-        <h2 class="venture-text">enture</h2></p>
+        <p><h2 class="venture-text">Venture</h2></p>
       </div>
 
       <p class="pr-5 text-white-50">Venture, platform pilihan untuk menemukan alat pertahanan diri menarik dan berkualitas tinggi. Baik seorang collector, profesional, atau hanya seseorang yang ingin menjaga diri, Venture hadir untuk memandu Anda melalui perjalanan Anda. Konten kami mencakup berbagai kategori, termasuk teknologi, keterampilan bertahan hidup, perlengkapan luar ruangan, dan banyak lagi. Kami berusaha menyajikan wawasan terperinci, saran praktis, dan platform yang mendorong pembelajaran dan eksplorasi.</p>
