@@ -10,6 +10,8 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\Facades\DataTables;
+use PhpOffice\PhpSpreadsheet\IOFactory;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
 
 class StokController extends Controller
 {
@@ -187,5 +189,133 @@ class StokController extends Controller
                 'message' => 'Data tidak ditemukan'
             ]);
         }
+    }
+
+    public function import()
+    {
+        return view('stok.import');
+    }
+
+    public function import_ajax(Request $request)
+    {
+        if ($request->ajax() || $request->wantsJson()) {
+            $rules = [
+                'file_stok' => ['required', 'mimes:xlsx', 'max:1024'] // Validasi file
+            ];
+
+            $validator = Validator::make($request->all(), $rules);
+            if ($validator->fails()) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Validasi gagal',
+                    'msgField' => $validator->errors()
+                ]);
+            }
+
+            $file = $request->file('file_stok'); // Mengambil file dari request
+            $reader = IOFactory::createReader('Xlsx'); // Load Excel reader
+            $reader->setReadDataOnly(true); // Hanya membaca data
+            $spreadsheet = $reader->load($file->getRealPath()); // Load file Excel
+            $sheet = $spreadsheet->getActiveSheet(); // Ambil sheet aktif
+
+            $data = $sheet->toArray(null, false, true, true); // Ubah data sheet menjadi array
+
+            $insert = [];
+            if (count($data) > 1) {
+                foreach ($data as $baris => $value) {
+                    if ($baris > 1) {
+                        $stok_tanggal = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($value['D'])->format('Y-m-d H:i:s');
+
+                        $insert[] = [
+                            'supplier_id' => $value['A'],
+                            'barang_id' => $value['B'],
+                            'user_id' => $value['C'],
+                            'stok_tanggal' => $stok_tanggal, // Menggunakan tanggal dari Excel
+                            'stok_jumlah' => $value['E'],
+                            'created_at' => now(),
+                        ];
+                    }
+                }
+
+                if (count($insert) > 0) {
+                    // Masukkan data ke database, abaikan jika data sudah ada
+                    stokmodel::insertOrIgnore($insert);
+                }
+
+                return response()->json([
+                    'status' => true,
+                    'message' => 'Data berhasil diimport'
+                ]);
+            } else {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Tidak ada data yang diimport'
+                ]);
+            }
+        }
+        return redirect('/');
+    }
+
+
+    public function export_excel()
+    {
+        $stok = stokmodel::select('supplier_id', 'barang_id', 'user_id', 'stok_tanggal', 'stok_jumlah')
+            ->orderBy('supplier_id')
+            ->with('supplier', 'barang', 'user')
+            ->get();
+
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet(); //ambil sheet yang aktif
+
+        // Set Header Kolom
+        $sheet->setCellValue('A1', 'No');
+        $sheet->setCellValue('B1', 'Nama Supplier');
+        $sheet->setCellValue('C1', 'Nama Barang');
+        $sheet->setCellValue('D1', 'Nama User');
+        $sheet->setCellValue('E1', 'Stok Tanggal');
+        $sheet->setCellValue('F1', 'Stok Jumlah');
+
+        // Buat header menjadi bold
+        $sheet->getStyle('A1:F1')->getFont()->setBold(true);
+
+        $no = 1; // Nomor data dimulai dari 1
+        $baris = 2; // Baris data dimulai dari baris ke-2
+        foreach ($stok as $key => $value) {
+            $sheet->setCellValue('A' . $baris, $no);
+            $sheet->setCellValue('B' . $baris, $value->supplier->supplier_name);
+            $sheet->setCellValue('C' . $baris, $value->barang->barang_nama);
+            $sheet->setCellValue('D' . $baris, $value->user->nama);
+            $sheet->setCellValue('E' . $baris, $value->stok_tanggal);
+            $sheet->setCellValue('F' . $baris, $value->stok_jumlah);
+
+            $baris++;
+            $no++;
+        }
+
+        // Set ukuran kolom otomatis untuk semua kolom
+        foreach (range('A', 'F') as $columnID) {
+            $sheet->getColumnDimension($columnID)->setAutoSize(true);
+        }
+
+        // Set judul sheet
+        $sheet->setTitle('Data Stok');
+
+        // Buat writer
+        $writer = IOFactory::createWriter($spreadsheet, 'Xlsx');
+        $filename = 'Data Stok ' . date('Y-m-d H:i:s') . '.xlsx';
+
+        // Atur Header untuk Download File Excel
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment;filename="' . $filename . '"');
+        header('Cache-Control: max-age=0');
+        header('Cache-Control: max-age=1');
+        header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
+        header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
+        header('Cache-Control: cache, must-revalidate');
+        header('Pragma: public');
+
+        // Simpan file dan kirim ke output
+        $writer->save('php://output');
+        exit;
     }
 }

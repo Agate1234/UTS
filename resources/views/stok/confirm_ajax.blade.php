@@ -36,7 +36,7 @@
                     <table class="table table-sm table-bordered table-striped">
                         <tr>
                             <th class="text-right col-3">Nama Supplier :</th>
-                            <td class="col-9">{{ $stok->supplier->supplier_nama }}</td>
+                            <td class="col-9">{{ $stok->supplier->supplier_name }}</td>
                         </tr>
                         <tr>
                             <th class="text-right col-3">Nama Barang :</th>
@@ -44,7 +44,7 @@
                         </tr>
                         <tr>
                             <th class="text-right col-3">Nama User :</th>
-                            <td class="col-9">{{ $stok->user->name }}</td>
+                            <td class="col-9">{{ $stok->user->nama }}</td>
                         </tr>
                         <tr>
                             <th class="text-right col-3">Stok Tanggal :</th>
