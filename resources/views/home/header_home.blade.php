@@ -1,5 +1,5 @@
 <header class="header">
-    <img src="{{ asset('../resources/img/logo.png') }}" alt="logo">
+    <img src="{{ asset('img/logo.png') }}" alt="logo">
 
     <nav class="navbar">
         <a href="#" data-text="Home" class="active">Home</a>

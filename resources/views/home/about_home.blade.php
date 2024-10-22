@@ -1,6 +1,6 @@
 <section class="about" id="about">
     <div class="main">
-        <img src="{{ asset('../resources/img/me.png') }}" alt="me">
+        <img src="{{ asset('img/me.png') }}" alt="me">
         <div class="about-text">
             <h1>About Us</h1>
             <h5>Founder <span>& Owner</span></h5>

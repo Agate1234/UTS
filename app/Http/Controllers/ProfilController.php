@@ -27,7 +27,6 @@ class ProfilController extends Controller
             'title' => 'Profil User'
         ];
     
-        // Pass the authenticated user
         $user = auth()->user();
     
         return view('profil.index', [
@@ -66,6 +65,83 @@ class ProfilController extends Controller
         } else {
             return response('No image', 404);
         }
+    }
+
+    public function ubah () {
+        $user = auth()->user();
+
+        return view('profil.ubah_data', ['user' => $user]);
+    }
+
+    public function update_ajax(Request $request)
+    {
+        if ($request->ajax() || $request->wantsJson()) {
+            $rules = [
+                'nama' => 'required|max:100'
+            ];
+
+            $validator = Validator::make($request->all(), $rules);
+
+            if ($validator->fails()) {
+                return response()->json([
+                    'status' => false, 
+                    'message' => 'Validasi gagal.',
+                    'msgField' => $validator->errors() 
+                ]);
+            }
+
+            $user = auth()->user();
+
+            if ($user) {
+                $user->update($request->all());
+                return response()->json([
+                    'status' => true,
+                    'message' => 'Data berhasil diupdate'
+                ]);
+            } else {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Data tidak ditemukan'
+                ]);
+            }
+        }
+        return redirect('/');
+    }
+
+    public function ubah_pass(Request $request)
+    {
+        if ($request->ajax() || $request->wantsJson()) {
+            $user = auth()->user();
+
+            $rules = [
+                'username' => 'required|max:20|unique:m_user,username,' . $user->user_id . ',user_id',
+                'password' => 'nullable|min:6|max:20'
+            ];
+
+            $validator = Validator::make($request->all(), $rules);
+
+            if ($validator->fails()) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Validasi gagal.',
+                    'msgField' => $validator->errors()
+                ]);
+            }
+
+            if ($user) {
+                $user->update($request->all());
+                return response()->json([
+                    'status' => true,
+                    'message' => 'Data berhasil diupdate'
+                ]);
+            } else {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Data tidak ditemukan'
+                ]);
+            }
+        }
+        return redirect('/');
     }
 
 }

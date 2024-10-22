@@ -190,7 +190,6 @@ class UserController extends Controller
 
     public function update_ajax(Request $request, $id)
     {
-        // cek apakah request dari ajax
         if ($request->ajax() || $request->wantsJson()) {
             $rules = [
                 'level_id' => 'required|integer',
@@ -227,7 +226,6 @@ class UserController extends Controller
         return redirect('/');
     }
 
-    // Menghapus data user
     public function destroy(string $id) {
         $check = UserModel::find($id);
         if(!$check) { // untuk mengecek apakah data user dengan id yang dimaksud ada atau tidak

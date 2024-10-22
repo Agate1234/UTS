@@ -44,7 +44,7 @@
             </ul>
 
             <div class="float-left">
-              <a class="btn btn-sm btn-primary mt-1" href="{{ url('/profil/edit_profil') }}">Ubah Profil</a>
+              <button class="btn btn-sm btn-primary mt-1" onclick="modalAction('{{ url('profil/ubah_data') }}')" >Ubah Profil</button>
             </div>
             <div class="card-tools float-right">
                 <form action="{{ route('upload.foto') }}" method="POST" enctype="multipart/form-data">
@@ -68,22 +68,24 @@
         <div class="card-body">
           <div class="tab-content">
             <div class="active tab-pane" id="edit-pass">
-              <form class="form-horizontal">
+              <form id="form-edit" class="form-horizontal" method="POST" action="{{ route('profil.ubah_pass') }}">
+                @csrf
+                @method('PUT')
                 <div class="form-group row">
                   <label for="inputUser" class="col-sm-2 col-form-label">Username</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputUser" placeholder="Username">
+                    <input value="{{ $user->username }}" type="text" class="form-control" id="inputUser" name="username" placeholder="Username">
                   </div>
                 </div>
                 <div class="form-group row">
                   <label for="inputPass" class="col-sm-2 col-form-label">Password</label>
                   <div class="col-sm-10">
-                    <input type="password" class="form-control" id="inputPass" placeholder="Password">
+                    <input type="password" class="form-control" id="inputPass" name="password" placeholder="Password">
                   </div>
                 </div>
                 <div class="form-group row">
                   <div class="offset-sm-2 col-sm-10">
-                    <button type="submit" class="btn btn-danger">Submit</button>
+                    <button type="submit" class="btn btn-info">Submit</button>
                   </div>
                 </div>
               </form>
@@ -97,3 +99,69 @@
 <div id="myModal" class="modal fade animate shake" tabindex="-1" data-backdrop="static" data-keyboard="false" data-width="75%"></div>
 
 @endsection
+
+@push('js')
+    <script>
+        function modalAction(url = ''){
+            $('#myModal').load(url,function(){
+                $('#myModal').modal('show');
+            });
+        }
+
+        $(document).ready(function() {
+            $("#form-edit").validate({
+                rules: {
+                    username: {
+                        required: true,
+                        minlength: 3,
+                        maxlength: 20
+                    },
+                    password: {
+                        minlength: 6,
+                        maxlength: 20
+                    }
+                },
+                submitHandler: function(form) {
+                    $.ajax({
+                        url: form.action,
+                        type: form.method,
+                        data: $(form).serialize(),
+                        success: function(response) {
+                            if (response.status) {
+                                $('#myModal').modal('hide');
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Berhasil',
+                                    text: response.message
+                                });
+                                dataUser.ajax.reload();
+                            } else {
+                                $('.error-text').text('');
+                                $.each(response.msgField, function(prefix, val) {
+                                    $('#error-' + prefix).text(val[0]);
+                                });
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Terjadi Kesalahan',
+                                    text: response.message
+                                });
+                            }
+                        }
+                    });
+                    return false;
+                },
+                errorElement: 'span',
+                errorPlacement: function(error, element) {
+                    error.addClass('invalid-feedback');
+                    element.closest('.form-group').append(error);
+                },
+                highlight: function(element, errorClass, validClass) {
+                    $(element).addClass('is-invalid');
+                },
+                unhighlight: function(element, errorClass, validClass) {
+                    $(element).removeClass('is-invalid');
+                }
+            });
+        });
+    </script>
+@endpush

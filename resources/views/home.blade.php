@@ -12,12 +12,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fork-awesome/1.1.7/css/fork-awesome.min.css"> 
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="{{ asset(path: '../resources/css/custom.css') }}">
-    <link rel="stylesheet" href="{{ asset(path: '../resources/css/header_home.css') }}"> 
-    <link rel="stylesheet" href="{{ asset(path: '../resources/css/banner_home.css') }}">
-    <link rel="stylesheet" href="{{ asset(path: '../resources/css/footer_home.css') }}">
-    <link rel="stylesheet" href="{{ asset(path: '../resources/css/kategori_home.css') }}">
-    <link rel="stylesheet" href="{{ asset(path: '../resources/css/about.css') }}">
+    <link rel="stylesheet" href="{{ asset(path: 'css/custom.css') }}">
+    <link rel="stylesheet" href="{{ asset(path: 'css/header_home.css') }}"> 
+    <link rel="stylesheet" href="{{ asset(path: 'css/banner_home.css') }}">
+    <link rel="stylesheet" href="{{ asset(path: '.css/footer_home.css') }}">
+    <link rel="stylesheet" href="{{ asset(path: 'css/kategori_home.css') }}">
+    <link rel="stylesheet" href="{{ asset(path: 'css/about.css') }}">
 </head>
 <body>
 

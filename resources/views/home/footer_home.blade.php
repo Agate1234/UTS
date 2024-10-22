@@ -4,7 +4,7 @@
     <div class="col-lg-5 col-xs-12 about-company">
 
       <div class="logo-container">
-        <p><img src="{{ asset('../resources/img/logo.png') }}" alt="logo" style="height: 50px; width: auto;" class="logo">
+        <p><img src="{{ asset('img/logo.png') }}" alt="logo" style="height: 50px; width: auto;" class="logo">
         <h2 class="venture-text">enture</h2></p>
       </div>
 

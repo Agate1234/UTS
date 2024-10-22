@@ -50,4 +50,4 @@
 
 </div>
 
-<script src="{{ asset('../resources/js/kat.js') }}"></script>
+<script src="{{ asset('js/kat.js') }}"></script>

@@ -11,6 +11,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\StokController;
+use App\Http\Controllers\TransaksiController;
 
 Route::pattern('id', '[0-9]+'); // artinya ketika ada parameter {id}, maka harus berupa angka
 
@@ -29,7 +30,9 @@ Route::middleware(['auth'])->group(function(){
         Route::get('/', [ProfilController::class, 'index']);
         Route::post('/upload', [ProfilController::class, 'upload'])->name('upload.foto');
         Route::get('/image', [ProfilController::class, 'showProfileImage'])->name('profil.image');
-
+        Route::get('/ubah_data', [ProfilController::class, 'ubah'])->name('profil.ubah');     
+        Route::put('/update_ajax', [ProfilController::class, 'update_ajax'])->name('profil.update_ajax'); 
+        Route::put('/ubah_pass', [ProfilController::class, 'ubah_pass'])->name('profil.ubah_pass'); 
     });    
 
     Route::middleware(['authorize:ADM'])->group(function(){
@@ -154,6 +157,24 @@ Route::middleware(['auth'])->group(function(){
             Route::delete('/{id}', [StokController::class, 'destroy']);
             Route::get('/export_pdf', [StokController::class, 'export_pdf']); 
             Route::get('/{id}/show_ajax', [StokController::class, 'show_ajax']);
+        });
+    });
+
+    Route::middleware(['authorize:ADM,MNG,STF'])->group(function(){
+        Route::group(['prefix' => 'transaksi'], function() {
+            Route::get('/', [TransaksiController::class, 'index']);
+            Route::post('/list', [TransaksiController::class, 'list']);
+            Route::get('/create_ajax', [TransaksiController::class, 'create_ajax']);    
+            Route::post('/ajax', [TransaksiController::class, 'store_ajax']);
+            Route::get('/getHargaBarang/{id}', [TransaksiController::class, 'getHargaBarang']);
+            Route::get('/{id}/edit_ajax', [TransaksiController::class, 'edit_ajax']);     
+            Route::put('/{id}/update_ajax', [TransaksiController::class, 'update_ajax']);
+            Route::get('/{id}/delete_ajax', [TransaksiController::class, 'confirm_ajax']);  
+            Route::delete('/{id}/delete_ajax', [TransaksiController::class, 'delete_ajax']);
+            Route::delete('/{id}', [TransaksiController::class, 'destroy']);
+            Route::get('/export_excel', [TransaksiController::class, 'export_excel']); 
+            Route::get('/export_pdf', [TransaksiController::class, 'export_pdf']); 
+            Route::get('/{id}/show_ajax', [TransaksiController::class, 'show_ajax']);
         });
     });
 });
