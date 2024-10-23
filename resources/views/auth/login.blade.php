@@ -21,7 +21,8 @@
     <link rel="stylesheet" href="{{ asset('adminlte/dist/css/adminlte.css') }}">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="{{ asset(path: '../resources/css/custom.css') }}">
+    <link rel="stylesheet" href="{{ asset(path: 'css/login.css') }}">
+
 </head>
 <body class="hold-transition login-page">
     <div class="login-box">

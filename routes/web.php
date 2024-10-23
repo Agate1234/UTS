@@ -187,6 +187,8 @@ Route::middleware(['auth'])->group(function(){
             Route::delete('/{id}/delete_ajax', [TransaksiController::class, 'delete_ajax']);
             Route::get('/export_excel', [TransaksiController::class, 'export_excel']); 
             Route::get('/export_pdf', [TransaksiController::class, 'export_pdf']); 
+            Route::get('/import', [TransaksiController::class, 'import']);
+            Route::post('/import_ajax', [TransaksiController::class, 'import_ajax']);
             Route::get('/{id}/show_ajax', [TransaksiController::class, 'show_ajax']);
         });
     });

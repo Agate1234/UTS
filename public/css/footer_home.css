@@ -8,29 +8,29 @@
 }
 
 .footer .links li a {
-  color: white; /* Ensure link text is white */
+  color: white; 
   transition: color 0.2s;
 }
 
 .footer .links li a:hover {
   text-decoration: none;
-  color: #4180CB; /* On hover, it will turn to blue */
+  color: #4180CB;
 }
 
 .footer .about-company i,
 .footer .location i {
   font-size: 18px;
-  color: white; /* Ensure icons are white */
+  color: white; 
 }
 
 .footer .about-company p,
 .footer .location p,
 .footer .copyright p {
-  color: white !important; /* Ensure all paragraph text is white */
+  color: white !important; 
 }
 
 .footer .about-company a {
-  color: white; /* Ensure link text is white */
+  color: white; 
   transition: color 0.2s;
 }
 
@@ -48,25 +48,13 @@
 
 .logo-container {
   display: flex;
-  flex-direction: row; /* Ensure items are aligned in a row */
-  align-items: center; /* Align logo and text vertically */
-}
-
-.footer .logo {
-  height: 50px;
-  width: auto;
-  margin-right: 15px; /* Space between logo and text */
-  display: inline-block;
+  flex-direction: row; 
+  align-items: center; 
 }
 
 .venture-text {
   margin: 0;
-  color: white; /* Ensure "Venture" text is white */
+  color: white;
   font-size: 2rem;
   display: inline-block;
-}
-
-.venture-text, .logo-container img {
-  display: inline-block !important;
-  vertical-align: middle;
 }

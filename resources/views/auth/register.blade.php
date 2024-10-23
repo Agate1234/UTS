@@ -19,17 +19,22 @@
 
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('adminlte/dist/css/adminlte.min.css') }}">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ asset(path: 'css/login.css') }}">
+
+
 </head>
 <body class="hold-transition login-page">
     <div class="login-box">
         <div class="card card-outline card-primary">
             <div class="card-header text-center">
                 <a href="{{ url('/') }}" class="h1">
-                    <b>Admin</b>LTE
+                    <b>Ven</b>ture
                 </a>
             </div>
             <div class="card-body">
-                <p class="login-box-msg">Sign Up</p>
+                <p class="login-box-msg">Sign Up for start ur activity</p>
                 <form action="{{ url('register') }}" method="POST" id="form-register">
                     @csrf
                     <div class="input-group mb-3">

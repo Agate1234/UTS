@@ -97,6 +97,8 @@ class ProfilController extends Controller
 
         $user->nama = $request->nama;
         $user->save();
+
+        return redirect('/profil');
     }
 
     public function ubah_pass(Request $request)

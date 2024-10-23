@@ -1,4 +1,4 @@
-<form action="{{ url('/penjualan/' . $penjualan->penjualan_id . '/delete_ajax') }}" method="POST"
+<form action="{{ url('/transaksi/' . $penjualan->penjualan_id . '/delete_ajax') }}" method="POST"
     id="form-delete-penjualan">
     @csrf
     @method('DELETE')
