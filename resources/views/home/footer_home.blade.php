@@ -13,20 +13,18 @@
     <div class="col-lg-3 col-xs-12 links">
       <h4 class="mt-lg-0 mt-sm-3">Links</h4>
         <ul class="m-0 p-0">
-          <li>- <a href="#">Lorem ipsum</a></li>
-          <li>- <a href="#">Nam mauris velit</a></li>
-          <li>- <a href="#">Etiam vitae mauris</a></li>
-          <li>- <a href="#">Fusce scelerisque</a></li>
-          <li>- <a href="#">Sed faucibus</a></li>
-          <li>- <a href="#">Mauris efficitur nulla</a></li>
+          <li>- <a href="#">Tentang Kami</a></li>
+          <li>- <a href="#">Layanan Kami</a></li>
+          <li>- <a href="#">Blog</a></li>
+          <li>- <a href="#">Kontak</a></li>
         </ul>
     </div>
     <div class="col-lg-4 col-xs-12 location">
-      <h4 class="mt-lg-0 mt-sm-4">Location</h4>
-      <p>22, Lorem ipsum dolor, consectetur adipiscing</p>
-      <p class="mb-0"><i class="fa fa-phone mr-3"></i>(541) 754-3010</p>
-      <p><i class="fa fa-envelope-o mr-3"></i>info@hsdf.com</p>
-    </div>
+        <h4 class="mt-lg-0 mt-sm-4">Location</h4>
+        <p>22, Jl. Contoh, Jakarta, Indonesia</p>
+        <p class="mb-0"><i class="fa fa-phone mr-3"></i>(021) 1234-5678</p>
+        <p><i class="fa fa-envelope-o mr-3"></i>info@venture.co.id</p>
+      </div>
   </div>
   <div class="row mt-5">
     <div class="col copyright">

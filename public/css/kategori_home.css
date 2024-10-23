@@ -64,7 +64,7 @@ body {
     position: absolute;
     top: 50%;
     left: 100px;
-    width: 1000px;
+    width: 500px;
     text-align: left;
     color: #eee;
     transform: translate(0, -50%);
