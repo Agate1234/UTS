@@ -73,13 +73,10 @@
     </div>
 </form>
 
-<!-- CSRF Token -->
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
-<!-- jQuery Script for Dynamic Form Handling -->
 <script>
     $(document).ready(function() {
-        // Dynamically generate barang rows based on jumlah_barang input
         $('#jumlah_barang').on('input', function() {
             let jumlah = $(this).val();
             $('#barang-table').empty(); // Clear existing rows
@@ -130,7 +127,6 @@
                         }
                     },
                     error: function(xhr) {
-                        console.log(xhr.responseText);
                         Swal.fire({
                             icon: 'error',
                             title: 'Error',

@@ -75,7 +75,6 @@ Route::middleware(['auth'])->group(function(){
             Route::put('/{id}/update_ajax', [LevelController::class, 'update_ajax']);
             Route::get('/{id}/delete_ajax', [LevelController::class, 'confirm_ajax']);  
             Route::delete('/{id}/delete_ajax', [LevelController::class, 'delete_ajax']);
-            Route::delete('/{id}', [LevelController::class, 'destroy']);
             Route::get('/{id}/show_ajax', [LevelController::class, 'show_ajax']); 
             Route::get('/import', [LevelController::class, 'import']);
             Route::post('/import_ajax', [LevelController::class, 'import_ajax']);

@@ -67,7 +67,6 @@ class TransaksiController extends Controller
     {
         $barang = BarangModel::find($id);
 
-        // Periksa apakah barang ditemukan
         if ($barang) {
             return response()->json([
                 'status' => true,
@@ -104,7 +103,6 @@ class TransaksiController extends Controller
         }
 
         try {
-            // Simpan data penjualan
             $penjualan = new PenjualanModel();
             $penjualan->user_id = $request->user_id;
             $penjualan->pembeli = $request->pembeli;
@@ -112,7 +110,6 @@ class TransaksiController extends Controller
             $penjualan->penjualan_tanggal = $request->penjualan_tanggal;
             $penjualan->save();
 
-            // Simpan detail barang
             foreach ($request->barang_id as $index => $barangId) {
                 $detailPenjualan = new DetailModel();
                 $detailPenjualan->penjualan_id = $penjualan->penjualan_id;

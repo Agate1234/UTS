@@ -165,6 +165,7 @@ class LevelController extends Controller
             }
 
             LevelModel::create($request->all());
+
             return response()->json([
                 'status' => true,
                 'message' => 'Data Level berhasil disimpan'
@@ -196,7 +197,9 @@ class LevelController extends Controller
                     'msgField' => $validator->errors()
                 ]);
             }
+
             $check = LevelModel::find($id);
+
             if ($check) {
                 $check->update($request->all());
                 return response()->json([
@@ -221,7 +224,9 @@ class LevelController extends Controller
 
     public function delete_ajax (Request $request, $id) {
         if ($request->ajax() || $request->wantsJson()) {
+
             $user = LevelModel::find($id);
+
             if ($user) {
                 $user->delete();
                 return response()->json([
@@ -266,6 +271,7 @@ class LevelController extends Controller
             ];
 
             $validator = Validator::make($request->all(), $rules);
+            
             if ($validator->fails()) {
                 return response()->json([
                     'status' => false,

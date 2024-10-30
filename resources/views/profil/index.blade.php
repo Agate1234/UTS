@@ -3,7 +3,7 @@
 @section('content')
 
 <style>
-    .profile-image-container {
+  .profile-image-container {
       display: flex;
       flex-direction: column;
       align-items: center;
